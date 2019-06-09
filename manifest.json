@@ -10,12 +10,12 @@
     },
 
     "permissions": [
-        "webRequest", "webRequestBlocking"
+        "webRequest", "webRequestBlocking", "https://dictionaryapi.net/"
     ],
     
     "content_scripts": [{
         "matches": [ "http://*/*", "https://*/*"],
-        "js": ["content-script.js", "jquery_lite.js"]
+        "js": ["content-script.js"]
     }],
 
     "background": {

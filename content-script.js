@@ -1,20 +1,19 @@
-/*
-copy the selected text to clipboard
-*/
 async function copySelection() {
-    const selectedText = window.getSelection().toString().trim();
-    const url = "http://127.0.0.1:5000/"
-    const url2 = "https://api.github.com/events"
+    const APIkey = "93a44aeb-bb02-43ed-bb91-82dc3255f49b"
+    const selectedText = window.getSelection().toString().trim().toLowerCase();
     if (selectedText) {
-        // document.execCommand("Copy");
-        
-        console.log("Translating...");
-     
-        fetch("https://api.github.com/events")
-        .then(res=>{alert("success")})
-        .catch(e=>{alert("failure")})
-    }
-    
+        const url = `https://dictionaryapi.com/api/v3/references/collegiate/json/${selectedText}?key=${APIkey}`
+        fetch(url)
+        .then( function(res){
+            // alert("success")
+            data = res.json();
+            return data
+        }).then ( translation => {
+            console.log(translation[0]['shortdef'].join(" | "));
+        })
+        .catch( function(e){
+            alert("failure")
+        })
+    } 
 }
-
 document.addEventListener("dblclick", copySelection);
